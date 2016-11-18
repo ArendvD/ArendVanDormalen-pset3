@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:id="@+id/movie_poster"
+        android:src="@drawable/movie_default"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/movie_title"
+        android:text="Titel"
+        android:textSize="25sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/movie_year"
+            android:layout_gravity="start"
+            android:text="Jaar"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/movie_director"
+            android:layout_gravity="end"
+            android:text="Director"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movie_actors"
+        android:layout_gravity="center"
+        android:text="Actor, Actor, Actor, Actor"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/movie_plot"
+        android:layout_margin="10dp"
+        android:layout_gravity="start"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tincidunt fringilla bibendum. Nulla venenatis mi at mauris sagittis iaculis. Integer consequat nisi leo, a tempus risus fermentum in. Pellentesque euismod porttitor ante at eleifend. Integer consectetur nisi sed nisl venenatis, sed tincidunt lacus consectetur. Donec velit est, porta at suscipit eu, fringilla non dolor. Praesent ligula nulla, rutrum et ornare quis, tempus ut lacus. Aenean non consectetur risus."
+        android:textSize="10sp"/>
+
+</LinearLayout>

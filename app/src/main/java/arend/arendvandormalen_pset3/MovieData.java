@@ -12,6 +12,8 @@ public class MovieData {
     public String plot;
     public String actors;
     public String imageLink;
+    public String director;
+    public String runtime;
 
     public MovieData(String title, String year, String imageLink){
         this.title = title;
@@ -25,6 +27,12 @@ public class MovieData {
     }
     public void setActors(String actors) {
         this.actors = actors;
+    }
+    public void setDirector(String director) {
+        this.director = director;
+    }
+    public void setRuntime(String runtime) {
+        this.runtime = runtime;
     }
 
     // "Get"-methods
@@ -43,5 +51,10 @@ public class MovieData {
     public String getImageLink(){
         return imageLink;
     }
-
+    public String getDirector() {
+        return director;
+    }
+    public String getRuntime() {
+        return runtime;
+    }
 }

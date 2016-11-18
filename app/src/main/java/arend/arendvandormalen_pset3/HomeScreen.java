@@ -14,23 +14,48 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class HomeScreen extends AppCompatActivity {
 
-    SharedPreferences sharedPreferences;
-    public static final String myPreferences = "myPrefs";
+    //SharedPreferences sharedPreferences;
+    //public static final String myPreferences = "myPrefs";
 
     String searchTerm;
-
+    ArrayList<String> searchResultTitles;
+    MovieAsyncTask movieAsyncTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+        //sharedPreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
+    }
 
-        String[] testValues = {"TestA", "TestB", "TestC"};
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
 
+    public void sendToDatabase(View view) {
 
-        ListAdapter movieAdapter = new MovieAdapter(this, testValues);
+        EditText searchBox = (EditText) findViewById(R.id.movie_search_box);
+        searchTerm = searchBox.getText().toString();
+
+        movieAsyncTask = new MovieAsyncTask(HomeScreen.this);
+        movieAsyncTask.execute(searchTerm);
+    }
+
+    public void parseResults(ArrayList<MovieData> searchResults){
+
+        searchResultTitles = new ArrayList<>();
+
+        for (int i = 0; i < searchResults.size(); i++) {
+            String movieTitle = searchResults.get(i).getTitle();
+            searchResultTitles.add(movieTitle);
+        }
+
+        ListAdapter movieAdapter = new MovieAdapter(this, searchResultTitles);
 
         ListView movieList = (ListView) findViewById(R.id.movie_list);
         movieList.setAdapter(movieAdapter);
@@ -50,7 +75,7 @@ public class HomeScreen extends AppCompatActivity {
                 */
                 searchTerm = "cop"; //Test
 
-                MovieAsyncTask movieAsyncTask = new MovieAsyncTask(HomeScreen.this);
+                movieAsyncTask = new MovieAsyncTask(HomeScreen.this);
                 movieAsyncTask.execute(searchTerm);
 
                 String moviePicked = "You selected " +
@@ -61,24 +86,7 @@ public class HomeScreen extends AppCompatActivity {
             }
         });
 
-        sharedPreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
+
+
     }
-
-
-
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-    }
-
-    public void sendToDatabase(View view) {
-
-        EditText searchBox = (EditText) findViewById(R.id.movie_search_box);
-        searchTerm = searchBox.getText().toString();
-
-        MovieAsyncTask movieAsyncTask = new MovieAsyncTask(HomeScreen.this);
-        movieAsyncTask.execute(searchTerm);
-
-}
 }

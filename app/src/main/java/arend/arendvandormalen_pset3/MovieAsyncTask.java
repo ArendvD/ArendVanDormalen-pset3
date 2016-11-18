@@ -3,6 +3,7 @@ package arend.arendvandormalen_pset3;
 import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -13,16 +14,18 @@ import java.util.ArrayList;
 
 /**
  * Created by Arend on 2016-11-17.
- *
+ * AsyncTask for managing loading of movie data. Keeps main thread working.
  *
  */
 
 public class MovieAsyncTask extends AsyncTask<String, Integer, String> {
 
     Context context;
-    Activity activity;
+    HomeScreen activity;
 
-    public MovieAsyncTask(Activity activity){
+    ArrayList<MovieData> movieDataArrayList;
+
+    public MovieAsyncTask(HomeScreen activity){
         this.activity = activity;
         this.context = this.activity.getApplicationContext();
     }
@@ -59,7 +62,7 @@ public class MovieAsyncTask extends AsyncTask<String, Integer, String> {
             } else {
 
                 JSONArray movies = resultsObj.getJSONArray("Search");
-                ArrayList<MovieData> movieDataArrayList = new ArrayList<>();
+                movieDataArrayList = new ArrayList<>();
                 for (int i = 0; i < movies.length(); i++) {
                     JSONObject movie = movies.getJSONObject(i);
                     String title = movie.getString("Title");
@@ -68,8 +71,15 @@ public class MovieAsyncTask extends AsyncTask<String, Integer, String> {
                     MovieData movieData = new MovieData(title, year, imageLink);
                     movieDataArrayList.add(movieData);
                 }
+
+                // TODO: method naar homescreen
+
+                Log.d("Eerste Title", movieDataArrayList.get(0).getTitle());
+
                 String message = "First title is" + movieDataArrayList.get(0).getTitle();
                 Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+
+                activity.parseResults(movieDataArrayList);
             }
 
         } catch (JSONException e){
@@ -77,4 +87,5 @@ public class MovieAsyncTask extends AsyncTask<String, Integer, String> {
         }
 
     }
+
 }

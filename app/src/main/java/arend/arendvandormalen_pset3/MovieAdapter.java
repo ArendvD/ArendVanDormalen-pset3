@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Created by Arend on 2016-11-15.
  * Adapter that puts the movie data in the right place.
@@ -16,7 +18,7 @@ import android.widget.TextView;
 
 class MovieAdapter extends ArrayAdapter<String>{
 
-    public MovieAdapter(Context context, String[] values) {
+    public MovieAdapter(Context context, ArrayList<String> values) {
         super(context, R.layout.single_item, values);
     }
 
