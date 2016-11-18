@@ -18,8 +18,8 @@ import java.util.ArrayList;
 
 class MovieAdapter extends ArrayAdapter<String>{
 
-    public MovieAdapter(Context context, ArrayList<String> values) {
-        super(context, R.layout.single_item, values);
+    public MovieAdapter(Context context, ArrayList<String> titles) {
+        super(context, R.layout.single_item, titles);
     }
 
     @NonNull
@@ -31,9 +31,9 @@ class MovieAdapter extends ArrayAdapter<String>{
 
         String movieTitle = getItem(position);
 
-        TextView theTextView = (TextView) movieView.findViewById(R.id.textView1);
+        TextView movieTextView = (TextView) movieView.findViewById(R.id.textViewLine);
 
-        theTextView.setText(movieTitle);
+        movieTextView.setText(movieTitle);
 
         return  movieView;
 

@@ -72,12 +72,7 @@ public class MovieAsyncTask extends AsyncTask<String, Integer, String> {
                     movieDataArrayList.add(movieData);
                 }
 
-                // TODO: method naar homescreen
-
                 Log.d("Eerste Title", movieDataArrayList.get(0).getTitle());
-
-                String message = "First title is" + movieDataArrayList.get(0).getTitle();
-                Toast.makeText(context, message, Toast.LENGTH_LONG).show();
 
                 activity.parseResults(movieDataArrayList);
             }

@@ -6,12 +6,14 @@ import android.net.ParseException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.JsonReader;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -49,14 +51,20 @@ public class HomeScreen extends AppCompatActivity {
     public void parseResults(ArrayList<MovieData> searchResults){
 
         searchResultTitles = new ArrayList<>();
-
         for (int i = 0; i < searchResults.size(); i++) {
             String movieTitle = searchResults.get(i).getTitle();
             searchResultTitles.add(movieTitle);
         }
 
-        ListAdapter movieAdapter = new MovieAdapter(this, searchResultTitles);
+        String numMessage = Integer.toString(searchResultTitles.size()) +"movies found";
+        Log.d("AmountOfMovies is",numMessage);
 
+        // TODO: waarom werkt deze toast niet?
+        Toast.makeText(this, numMessage, Toast.LENGTH_SHORT);
+
+
+        // Enters ArrayList in adapter, which fills the ListView
+        ListAdapter movieAdapter = new MovieAdapter(this, searchResultTitles);
         ListView movieList = (ListView) findViewById(R.id.movie_list);
         movieList.setAdapter(movieAdapter);
 
@@ -64,29 +72,15 @@ public class HomeScreen extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
-                /*
-                String testURL = "http://www.omdbapi.com/?t=" + "frozen";
-                try {
-                    JsonReader movieReader = new JsonReader();
-
-                } catch(ParseException e){
-                    e.printStackTrace();
-                }
-                */
-                searchTerm = "cop"; //Test
-
-                movieAsyncTask = new MovieAsyncTask(HomeScreen.this);
-                movieAsyncTask.execute(searchTerm);
-
                 String moviePicked = "You selected " +
                         String.valueOf(adapterView.getItemAtPosition(position));
-
                 Toast.makeText(HomeScreen.this, moviePicked, Toast.LENGTH_SHORT).show();
+
+               // movieAsyncTask = new MovieAsyncTask(HomeScreen.this);
+               // movieAsyncTask.execute(searchTerm);
 
             }
         });
-
-
 
     }
 }
