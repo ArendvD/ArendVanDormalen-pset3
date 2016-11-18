@@ -38,6 +38,7 @@ public class HttpRequestHelper {
         if(url != null){
             try{
                 connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
 
                 Integer responseCode = connection.getResponseCode();
 

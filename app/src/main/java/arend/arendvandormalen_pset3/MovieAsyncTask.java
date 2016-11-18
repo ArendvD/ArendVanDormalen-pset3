@@ -51,14 +51,15 @@ public class MovieAsyncTask extends AsyncTask<String, Integer, String> {
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
 
-        if(result.length()==0){ //TODO: fix error check
-            Toast.makeText(context, "No data was found", Toast.LENGTH_SHORT).show();
-        } else {
+        try{
+            JSONObject resultsObj = new JSONObject(result);
+            String response = resultsObj.getString("Response");
+            if (response.equals("False")){
+                Toast.makeText(context, "No movies were found", Toast.LENGTH_SHORT).show();
+            } else {
 
-            ArrayList<MovieData> movieDataArrayList = new ArrayList<>();
-            try{
-                JSONObject resultsObj = new JSONObject(result);
                 JSONArray movies = resultsObj.getJSONArray("Search");
+                ArrayList<MovieData> movieDataArrayList = new ArrayList<>();
                 for (int i = 0; i < movies.length(); i++) {
                     JSONObject movie = movies.getJSONObject(i);
                     String title = movie.getString("Title");
@@ -69,10 +70,10 @@ public class MovieAsyncTask extends AsyncTask<String, Integer, String> {
                 }
                 String message = "First title is" + movieDataArrayList.get(0).getTitle();
                 Toast.makeText(context, message, Toast.LENGTH_LONG).show();
-
-            } catch (JSONException e){
-                e.printStackTrace();
             }
+
+        } catch (JSONException e){
+            e.printStackTrace();
         }
 
     }
