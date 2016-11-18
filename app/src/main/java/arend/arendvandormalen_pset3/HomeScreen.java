@@ -1,6 +1,7 @@
 package arend.arendvandormalen_pset3;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ParseException;
 import android.support.v7.app.AppCompatActivity;
@@ -80,14 +81,11 @@ public class HomeScreen extends AppCompatActivity {
         });
 
     }
-/*
-    public void parseDetails(ArrayList<MovieData> searchResults){
 
-        // Update local
-        this.searchResultList = searchResults;
-
+    public void switchToSingleMovie(MovieData movie){
+        Intent goToDetailScreen = new Intent(this, ActivityDetailScreen.class);
+        goToDetailScreen.putExtra("movie", movie);
+        startActivity(goToDetailScreen);
 
     }
-    */
-
 }

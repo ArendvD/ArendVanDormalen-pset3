@@ -51,10 +51,19 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/movie_runtime"
+        android:layout_gravity="center"
+        android:text="0 minutes"
+        android:textSize="15sp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/movie_plot"
         android:layout_margin="10dp"
         android:layout_gravity="start"
         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tincidunt fringilla bibendum. Nulla venenatis mi at mauris sagittis iaculis. Integer consequat nisi leo, a tempus risus fermentum in. Pellentesque euismod porttitor ante at eleifend. Integer consectetur nisi sed nisl venenatis, sed tincidunt lacus consectetur. Donec velit est, porta at suscipit eu, fringilla non dolor. Praesent ligula nulla, rutrum et ornare quis, tempus ut lacus. Aenean non consectetur risus."
-        android:textSize="10sp"/>
+        android:textSize="15sp"/>
 
 </LinearLayout>

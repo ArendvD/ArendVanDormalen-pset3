@@ -16,9 +16,10 @@ import java.net.URL;
  */
 public class HttpRequestHelper {
 
+    // Parts of url to give full plot
     private static final String url1 = "http://omdbapi.com/?";
     private static final String url2 = "=";
-    private static final String url3 = "/";
+    private static final String url3 = "&y=&plot=full&r=json/";
 
     protected static synchronized String downloadFromServer(String type, String... params){
 

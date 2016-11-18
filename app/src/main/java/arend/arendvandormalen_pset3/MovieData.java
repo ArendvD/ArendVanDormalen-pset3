@@ -1,11 +1,15 @@
 package arend.arendvandormalen_pset3;
 
+import java.io.Serializable;
+
 /**
  * Created by Arend on 2016-11-15.
  * Custom data class per movie
  */
 
-public class MovieData {
+// Serializable allows passing objects with intent.
+@SuppressWarnings("serial")
+public class MovieData implements Serializable{
 
     public String title;
     public String year;

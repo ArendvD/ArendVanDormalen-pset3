@@ -65,17 +65,30 @@ public class DetailsAsyncTask extends AsyncTask<String, Integer, String> {
                 Toast.makeText(context, "No movies were found", Toast.LENGTH_SHORT).show();
             } else {
 
+                // Loops through list of search results to find selected movie
                 for (int i = 0; i < movieDataArrayList.size(); i++) {
-                    String currentTitle = movieDataArrayList.get(i).getTitle();
+                    MovieData currentMovie = movieDataArrayList.get(i);
+                    String currentTitle = currentMovie.getTitle();
                     if (currentTitle.equals(movieName)){
+
                         Log.d("Same movie found:", movieName);
 
+                        // add elaborate data
+                        String actors = resultsObj.getString("Actors");
+                        currentMovie.setActors(actors);
+                        String plot = resultsObj.getString("Plot");
+                        currentMovie.setPlot(plot);
+                        String director = resultsObj.getString("Director");
+                        currentMovie.setDirector(director);
+                        String runtime = resultsObj.getString("Runtime");
+                        currentMovie.setRuntime(runtime);
+
+                        activity.switchToSingleMovie(currentMovie);
+                        break;
 
                     }
 
                 }
-
-
 
 
             }
