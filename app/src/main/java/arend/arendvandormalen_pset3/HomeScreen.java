@@ -24,8 +24,11 @@ public class HomeScreen extends AppCompatActivity {
     //public static final String myPreferences = "myPrefs";
 
     String searchTerm;
+    ArrayList<MovieData> searchResultList;
     ArrayList<String> searchResultTitles;
     MovieAsyncTask movieAsyncTask;
+    DetailsAsyncTask detailsAsyncTask;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,21 +53,10 @@ public class HomeScreen extends AppCompatActivity {
 
     public void parseResults(ArrayList<MovieData> searchResults){
 
-        searchResultTitles = new ArrayList<>();
-        for (int i = 0; i < searchResults.size(); i++) {
-            String movieTitle = searchResults.get(i).getTitle();
-            searchResultTitles.add(movieTitle);
-        }
-
-        String numMessage = Integer.toString(searchResultTitles.size()) +"movies found";
-        Log.d("AmountOfMovies is",numMessage);
-
-        // TODO: waarom werkt deze toast niet?
-        Toast.makeText(this, numMessage, Toast.LENGTH_SHORT);
-
+        this.searchResultList = searchResults;
 
         // Enters ArrayList in adapter, which fills the ListView
-        ListAdapter movieAdapter = new MovieAdapter(this, searchResultTitles);
+        ListAdapter movieAdapter = new MovieAdapter(this, searchResults);
         ListView movieList = (ListView) findViewById(R.id.movie_list);
         movieList.setAdapter(movieAdapter);
 
@@ -72,15 +64,30 @@ public class HomeScreen extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
-                String moviePicked = "You selected " +
-                        String.valueOf(adapterView.getItemAtPosition(position));
-                Toast.makeText(HomeScreen.this, moviePicked, Toast.LENGTH_SHORT).show();
+            // Retrieve MovieData related to clicked TextView
+            MovieData selectedMovie = (MovieData) adapterView.getItemAtPosition(position);
+            // Use Title from MovieData to find more extensive data
+            String selectedTitle = selectedMovie.getTitle();
 
-               // movieAsyncTask = new MovieAsyncTask(HomeScreen.this);
-               // movieAsyncTask.execute(searchTerm);
+            //String moviePicked = "You selected " + selectedTitle;
+            //Toast.makeText(HomeScreen.this, moviePicked, Toast.LENGTH_SHORT).show();
+            Log.d("movieDetailsName", selectedTitle);
+
+            detailsAsyncTask = new DetailsAsyncTask(HomeScreen.this, searchResultList);
+            detailsAsyncTask.execute(selectedTitle);
 
             }
         });
 
     }
+/*
+    public void parseDetails(ArrayList<MovieData> searchResults){
+
+        // Update local
+        this.searchResultList = searchResults;
+
+
+    }
+    */
+
 }

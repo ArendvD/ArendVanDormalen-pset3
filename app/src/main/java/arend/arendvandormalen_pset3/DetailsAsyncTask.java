@@ -14,21 +14,23 @@ import java.util.ArrayList;
 
 /**
  * Created by Arend on 2016-11-17.
- * AsyncTask for managing loading of movie data. Keeps main thread working.
+ * AsyncTask for managing loading of a single movie data. Keeps main thread working.
  *
  */
 
-public class MovieAsyncTask extends AsyncTask<String, Integer, String> {
+public class DetailsAsyncTask extends AsyncTask<String, Integer, String> {
 
     Context context;
     HomeScreen activity;
-    String searchType = "s";
+    String searchType = "t";
+    String movieName;
 
     ArrayList<MovieData> movieDataArrayList;
 
-    public MovieAsyncTask(HomeScreen activity){
+    public DetailsAsyncTask(HomeScreen activity, ArrayList<MovieData> movieDataArrayList){
         this.activity = activity;
         this.context = this.activity.getApplicationContext();
+        this.movieDataArrayList = movieDataArrayList;
     }
 
     // onPreExecute()
@@ -40,6 +42,7 @@ public class MovieAsyncTask extends AsyncTask<String, Integer, String> {
     // doInBackground()
     @Override
     protected String doInBackground(String... params) {
+        this.movieName = params[0];
         return HttpRequestHelper.downloadFromServer(searchType, params);
     }
 
@@ -62,20 +65,18 @@ public class MovieAsyncTask extends AsyncTask<String, Integer, String> {
                 Toast.makeText(context, "No movies were found", Toast.LENGTH_SHORT).show();
             } else {
 
-                JSONArray movies = resultsObj.getJSONArray("Search");
-                movieDataArrayList = new ArrayList<>();
-                for (int i = 0; i < movies.length(); i++) {
-                    JSONObject movie = movies.getJSONObject(i);
-                    String title = movie.getString("Title");
-                    String year = movie.getString("Year");
-                    String imageLink = movie.getString("Poster");
-                    MovieData movieData = new MovieData(title, year, imageLink);
-                    movieDataArrayList.add(movieData);
+                for (int i = 0; i < movieDataArrayList.size(); i++) {
+                    String currentTitle = movieDataArrayList.get(i).getTitle();
+                    if (currentTitle.equals(movieName)){
+                        Log.d("Same movie found:", movieName);
+
+
+                    }
+
                 }
 
-                Log.d("Eerste Title", movieDataArrayList.get(0).getTitle());
 
-                activity.parseResults(movieDataArrayList);
+
 
             }
 

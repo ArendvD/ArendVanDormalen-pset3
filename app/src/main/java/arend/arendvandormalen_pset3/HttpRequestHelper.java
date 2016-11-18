@@ -16,16 +16,17 @@ import java.net.URL;
  */
 public class HttpRequestHelper {
 
-    private static final String url1 = "http://omdbapi.com/?s=";
-    private static final String url2 = "/";
+    private static final String url1 = "http://omdbapi.com/?";
+    private static final String url2 = "=";
+    private static final String url3 = "/";
 
-    protected static synchronized String downloadFromServer(String... params){
+    protected static synchronized String downloadFromServer(String type, String... params){
 
         String result = "";
 
         String chosenTag = params[0];
 
-        String completeUrl = url1 + chosenTag + url2;
+        String completeUrl = url1 + type + url2 + chosenTag + url3;
 
         URL url = null;
         try{

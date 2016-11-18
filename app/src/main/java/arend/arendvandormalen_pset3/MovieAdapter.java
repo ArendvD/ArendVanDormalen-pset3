@@ -2,6 +2,7 @@ package arend.arendvandormalen_pset3;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +17,10 @@ import java.util.ArrayList;
  *
  */
 
-class MovieAdapter extends ArrayAdapter<String>{
+class MovieAdapter extends ArrayAdapter<MovieData>{
 
-    public MovieAdapter(Context context, ArrayList<String> titles) {
-        super(context, R.layout.single_item, titles);
+    public MovieAdapter(Context context, ArrayList<MovieData> movies) {
+        super(context, R.layout.single_item, movies);
     }
 
     @NonNull
@@ -29,13 +30,15 @@ class MovieAdapter extends ArrayAdapter<String>{
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View movieView = inflater.inflate(R.layout.single_item, parent, false);
 
-        String movieTitle = getItem(position);
-
+        String movieTitle = getItem(position).getTitle();
         TextView movieTextView = (TextView) movieView.findViewById(R.id.textViewLine);
-
         movieTextView.setText(movieTitle);
 
-        return  movieView;
+        String movieYear = getItem(position).getYear();
+        TextView yearTextView = (TextView) movieView.findViewById(R.id.yearLine);
+        yearTextView.setText(movieYear);
 
+        return  movieView;
     }
+
 }
