@@ -66,4 +66,13 @@
         android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tincidunt fringilla bibendum. Nulla venenatis mi at mauris sagittis iaculis. Integer consequat nisi leo, a tempus risus fermentum in. Pellentesque euismod porttitor ante at eleifend. Integer consectetur nisi sed nisl venenatis, sed tincidunt lacus consectetur. Donec velit est, porta at suscipit eu, fringilla non dolor. Praesent ligula nulla, rutrum et ornare quis, tempus ut lacus. Aenean non consectetur risus."
         android:textSize="15sp"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_add"
+        android:text="@string/add_to_watchlist"
+        android:textSize="15sp"
+        android:layout_gravity="center"
+        android:onClick="addToWatchlist"/>
+
 </LinearLayout>

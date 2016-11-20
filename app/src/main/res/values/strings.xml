@@ -4,4 +4,5 @@
     <string name="search_hint">Search a movie in the database</string>
     <string name="search_button">Search</string>
     <string name="saved_button">Saved Movies</string>
+    <string name="add_to_watchlist">Add to Watchlist</string>
 </resources>

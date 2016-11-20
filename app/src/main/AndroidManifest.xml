@@ -20,6 +20,10 @@
             android:label="Movie Details"
             android:theme="@style/AppTheme"/>
 
+        <activity android:name=".ActivityWatchlistScreen"
+            android:label="Watchlist"
+            android:theme="@style/AppTheme"/>
+
     </application>
 
 </manifest>

@@ -70,8 +70,6 @@ public class HomeScreen extends AppCompatActivity {
             // Use Title from MovieData to find more extensive data
             String selectedTitle = selectedMovie.getTitle();
 
-            //String moviePicked = "You selected " + selectedTitle;
-            //Toast.makeText(HomeScreen.this, moviePicked, Toast.LENGTH_SHORT).show();
             Log.d("movieDetailsName", selectedTitle);
 
             detailsAsyncTask = new DetailsAsyncTask(HomeScreen.this, searchResultList);
@@ -83,6 +81,7 @@ public class HomeScreen extends AppCompatActivity {
     }
 
     public void switchToSingleMovie(MovieData movie){
+
         Intent goToDetailScreen = new Intent(this, ActivityDetailScreen.class);
         goToDetailScreen.putExtra("movie", movie);
         startActivity(goToDetailScreen);

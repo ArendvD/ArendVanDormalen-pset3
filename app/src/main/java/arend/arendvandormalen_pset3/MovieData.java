@@ -1,5 +1,7 @@
 package arend.arendvandormalen_pset3;
 
+import android.graphics.Bitmap;
+
 import java.io.Serializable;
 
 /**

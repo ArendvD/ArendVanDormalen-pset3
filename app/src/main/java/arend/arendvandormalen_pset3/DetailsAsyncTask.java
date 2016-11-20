@@ -1,12 +1,10 @@
 package arend.arendvandormalen_pset3;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,6 +22,7 @@ public class DetailsAsyncTask extends AsyncTask<String, Integer, String> {
     HomeScreen activity;
     String searchType = "t";
     String movieName;
+    String movieURL;
 
     ArrayList<MovieData> movieDataArrayList;
 
@@ -89,7 +88,6 @@ public class DetailsAsyncTask extends AsyncTask<String, Integer, String> {
                     }
 
                 }
-
 
             }
 
